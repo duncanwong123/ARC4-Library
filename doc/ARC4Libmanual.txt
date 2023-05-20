@@ -1,0 +1,118 @@
+Disclaimer
+THE AUTHORS DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE,
+INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO
+EVENT SHALL THE AUTHORS BE LIABLE FOR ANY SPECIAL, INDIRECT OR
+CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
+USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE. 
+
+Author: Hector Ho Fuentes
+e-mail: hhofuent@ccs.neu.edu
+Date of ARC4Lib.prc: April 19, 2001
+Version: 0.1
+
+If you have any suggestions please write to the author.  
+
+Description:
+
+ARC4Lib is a Palm OS Library that implements ARC4 (Alleged RC4).
+
+To use this Palm Library, you need to:
+
+1.  Download the ARC4Lib.prc
+2.  Download the ARC4Lib.h
+3.  Only include the ARC4Lib.h in your project.
+
+How to use the ARC4Lib:
+
+1. First you need to open the Library. 
+The sample code is as follows:
+
+	err = SysLibFind("ARC4Library", &ARC4LibRefNum);
+	if (err) err = SysLibLoad('libr', 'HRC4', &ARC4LibRefNum);
+	ErrFatalDisplayIf(err, "Cannot load ARC4 Library");
+	err = ARC4Open(ARC4LibRefNum);
+
+Where ARC4LibRefNum is a static UInt16, used to store where is 
+the ARC4Library.
+
+We sugest that you put this code in your StartApplication() function, or
+in the function you use to initialize your application.
+
+2.  How to use ARC4?
+
+You need to create a variable that will contain some of the ARC4 info.  
+We have created a special type:
+ARC4_CTX.
+
+Example:
+
+ARC4_CTX key_ctx;
+
+Also, you need to Initialize ARC4 and then you can call the
+Encryption/Decryption functions.
+
+After you finish, you need to close the library.
+
+3.  How to Initialize ARC4?
+
+This is done via the function:
+ARC4Initialize(UInt16 refNum, unsigned char * keystring, int keysize, ARC4_CTX * key) 
+
+ARC4Initialize has the following parameters:
+
+UInt16 refNum:  This is the reference number of the library.
+unsigned char * keystring: This is string with the key.
+int keysize:  This signals the size of the key.
+ARC4_CTX * key:  In this variable we will store the key and other internal
+information about ARC4.
+
+4. How to Encrypt/Decrypt?
+
+To Encrypt or Decrypt, we have declared two functions:
+
+To Encrypt we use the function:
+
+ARC4Encrypt(UInt16 refNum, ARC4_CTX * key, unsigned char * in, unsigned
+char * out, unsigned long size)
+
+The parameters are as follows:
+
+UInt16 refNum:  The reference number of this library.  Obtain when you
+open the library.
+
+ARC4_CTX * key:  This is the context information about ARC4.  You need to
+initialize it before using it in Encrypt or Decrypt.
+
+unsigned char * in:  This is a pointer to the input string.
+
+unsigned char * out:  This is a pointer to where the output should be
+written.  The user has to allocate this memory.
+
+unsigned long size:  This is the size of the data to be encrypted.  This
+size is denoted in number of Bytes to be encrypted.
+
+To decrypt, the function is
+
+ARC4Decrypt(UInt16 refNum, ARC4_CTX * key, unsigned char * in, unsigned
+char * out, unsigned long size)
+
+and the parameters are the same.
+
+NOTE:  The user is responsible in deallocating any memory created for the
+input and output strings.
+
+5.  How to Close the Library?
+
+You can close the library when you finished.  This is accomplished via:
+
+	error = ARC4Close(ARC4LibRefNum, &numapps);  
+	// check for erros in the Close() routine
+	if (numapps == 0)
+		SysLibRemove(ARC4LibRefNum);
+
+We suggest you include this code in the StopApplication() function
+or your function used to handle the case of closing the application.
+
+

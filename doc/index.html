@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Project: Authentication and Key Revocation Protocols for Wireless Networks</title>
+<base target ="new_frame_1">
+<meta name="description" content="Wireless Security Laboratory at Northeastern University" />
+<meta name="keywords" lang="en-us" content="Northeastern University, Web page,Northeastern, Univeristy, Wireless, 
+Security, Laboratory, home page" />
+<link rel="stylesheet" href="/home/ahchan/wsl/authkeyprotocol/style.css"/>
+</head>
+<body>
+<h2>ARC4</h2>
+<h2>The current version is 0.1 (April 19, 2001)</h2>
+<p><b>ARC4Lib</b> is a free system library for Palm OS.
+It contains functions to encrypt/decrypt data using ARC4 (Alleged RC4). 
+A complete list of the functions currently provided by the latest version
+of ARC4Lib can be found in the <b><a href="ARC4Libmanual.txt" class="blue">
+User's Manual</a></b>.
+</p>
+
+<p>This library was written as a <b>system library</b>
+(<i>not</i> in GLib format) for benefiting the full support from
+the latest version of Palm OS and the developing tools.
+The system library is supported by the Palm OS SysLib* API calls and is <i>officially</i>
+described in Palm OS FAQ <i><a href="http://oasis.palm.com/dev/kb/papers/1143.cfm" class ="blue">
+Shared Libraries and Other Advanced Project Types</a></i>.
+It is a runtime <b>shared library</b> which allows Palm applications or
+other shared libraries using the ARC4Lib functions dynamically. This
+in terms saves the applications from keeping copies of the same
+code in their own code resources.</p>
+<p>Another advantage of implementing those functions in the form of a shared
+library is to overcome two memory constraints of Palm OS namely
+the 32KB jump limit (CodeWarrior default model) and the code resource
+size limit.</p>
+
+<p>Another type of shared libraries is called <b>
+<a href="http://www.isaac.cs.berkeley.edu/pilot/GLib/GLib.html" class ="blue">GLib</a></b>,
+which is more user-friendly (or programmer-friendly) than the system library
+mentioned above and is also faster because no systraps are done when
+calling the GLib functions. However, as of this writing, neither CodeWarrior nor the latest version of
+PRC-Tools supports GLibs. Only PRC-Tools 0.5.0 and 
+<a href="http://www.escribe.com/computing/pcpqa/m9618.html" class ="blue">Michael Sokolov's 0.6.0 beta</a> do so.
+This is also one of the reasons of implementing the library as a system library instead of a GLib.</p>
+<h2>How to Use?</h2>
+<p>
+If you just want to use the ARC4Lib with your Palm programs,
+simply follow the steps below to download the files and learn how to use them.
+</p>
+<ol>
+<li>Download the PRC file,
+<a href="ARC4Lib.prc" class ="blue" >ARC4Lib.prc</a> 
+and install it to your Palm Pilot.</li>
+<li>Download header files, <a href="ARC4Lib.h" class ="blue">ARC4Lib.h</a>
+Your Palm program needs to include the <b>ARC4Lib.h</b> header file. </li>
+<li>Finally, download <a href="ARC4Libmanual.txt" class ="blue">ARC4Lib User's Manual</a>
+  and learn the library functions. I'll polish a better one when I have time. </li>
+</ol>
+<ul class ="link" >
+For people who are interested in getting the source, please e-mail to either:
+<li class ="link">Duncan S. Wong<br /> 
+<a href="mailto:swong@ccs.neu.edu" class="blue"><i>swong@ccs.neu.edu</i></a></li>
+<li class ="link">Hector E. Ho Fuentes<br /> 
+<a href="mailto:hhofuent@ccs.neu.edu" class="blue"><i>hhofuent@ccs.neu.edu</i></a></li>
+</ul>
+<p>
+We have only tested the library on the Palm V and Palm IIIc with Palm OS v3.3 and Palm OS v3.5 so far.
+So your feedbacks of running the library on other Palm devices are
+welcome. This library is in the public domain. You can distribute, copy or
+modify the code as you will. I would also appreciate any comments, bug reports
+and enhancements.
+</p>
+<h2>Disclaimer</h2>
+<p>
+THE AUTHORS DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL THE AUTHORS
+BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF
+CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
+WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+</p>
+<img src="http://crypt.ccs.neu.edu/cgi-bin/Count.cgi?sh=F" alt="Count" />
+</body>
+</html>
